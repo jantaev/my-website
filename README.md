@@ -1,40 +1,40 @@
 # My Website
 
-A simple personal website built with plain HTML, CSS and a little JavaScript.
-No build step and no dependencies.
+Personal website built with [Astro](https://astro.build) and
+[Tailwind CSS](https://tailwindcss.com). It builds to plain static files.
 
 ## Structure
 
 ```
-index.html      Home page
-about.html      About me
-projects.html   Portfolio / work
-contact.html    Contact links
-css/style.css   All styles (colors and fonts live in :root at the top)
-js/main.js      Mobile menu toggle
-images/         Favicon, photos and other images
+src/
+  layouts/BaseLayout.astro   Page shell: <head>, header, footer
+  components/                Header (nav + mobile menu), Footer, ProjectCard
+  pages/                     One file per page: index, about, projects, contact
+  styles/global.css          Tailwind import and design tokens (colors, fonts)
+public/                      Files served as-is (favicon, images)
+astro.config.mjs             Site URL and base path for GitHub Pages
+.github/workflows/deploy.yml Builds and deploys to GitHub Pages on push to main
 ```
 
-## Preview locally
+## Develop
 
-- **VS Code:** install the "Live Server" extension, open `index.html`, and
-  click "Go Live". The browser reloads every time you save.
-- **Terminal:** run `npx serve .` and open the URL it prints.
+```
+npm install
+npm run dev       # local preview with live reload
+npm run build     # build to dist/
+npm run preview   # serve the built site
+```
 
 ## Editing
 
-- Replace "Your Name", the placeholder text and the contact links.
-- Change the site's colors and fonts in the `:root` block of `css/style.css`.
-- The header and footer are copied into each page. If you change the nav,
-  update it in all four HTML files.
+- Page text lives in `src/pages/*.astro`.
+- The nav links are listed once, in `src/components/Header.astro`.
+- Change colors in the `:root` block of `src/styles/global.css`; dark-mode
+  values are in the `prefers-color-scheme: dark` block below it.
+- Add a project by adding a `<ProjectCard>` in `src/pages/projects.astro`.
 
 ## Deploy with GitHub Pages
 
-1. Create a new repository on GitHub and push this project to it.
-2. On GitHub, go to **Settings → Pages**.
-3. Under "Build and deployment", choose **Deploy from a branch**, then pick
-   `main` and `/ (root)`.
-4. After a minute your site is live at
-   `https://<your-username>.github.io/<repo-name>/`.
-
-Every push to `main` updates the live site.
+In the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.
+After that, every push to `main` builds and publishes the site at
+https://jantaev.github.io/my-website/.
