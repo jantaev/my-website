@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+---
+
+<BaseLayout title="Projects – Adil Zhantaev" description="Projects by Adil Zhantaev.">
+  <h1 class="mb-4 text-3xl font-bold">Projects</h1>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(14rem,1fr))] gap-4">
+    <ProjectCard
+      title="HotNewHipHop — Frontend Development"
+      href="https://www.hotnewhiphop.com/"
+      linkLabel="Visit HotNewHipHop"
+    >
+      <p>
+        Contributed to the development and maintenance of a high-traffic music and entertainment
+        website. Worked on reusable components, frontend features, performance optimization, and
+        technical SEO.
+      </p>
+    </ProjectCard>
+    <ProjectCard
+      title="HNHH Frontend Migration"
+      href="https://www.hotnewhiphop.com/"
+      linkLabel="Visit HotNewHipHop"
+    >
+      <p>
+        Contributed to the migration of legacy PHP-based pages to a modern frontend architecture
+        using Astro and Next.js. Worked on reusable components, page templates, integrations, and
+        performance improvements.
+      </p>
+    </ProjectCard>
+    <ProjectCard title="Personal Website — AI-Driven Development">
+      <p>
+        A personal project exploring modern AI-assisted software development, including frontend
+        and backend development, AI agents, Git workflows, and automation.
+      </p>
+    </ProjectCard>
+  </div>
+</BaseLayout>

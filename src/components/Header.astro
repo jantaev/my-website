@@ -1,0 +1,51 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const current = Astro.url.pathname.replace(/\/$/, "") || base;
+
+const links = [
+  { label: "Home", href: `${base}/` },
+  { label: "About", href: `${base}/about/` },
+  { label: "Projects", href: `${base}/projects/` },
+  { label: "Contact", href: `${base}/contact/` },
+];
+
+const isCurrent = (href: string) => href.replace(/\/$/, "") === current;
+---
+
+<header
+  class="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-4 border-b border-border p-4"
+>
+  <a class="font-bold text-text no-underline" href={`${base}/`}>Adil Zhantaev</a>
+  <button
+    class="nav-toggle cursor-pointer rounded-md border border-border bg-transparent px-3 py-1 text-text sm:hidden"
+    aria-expanded="false"
+    aria-controls="site-nav">Menu</button
+  >
+  <nav id="site-nav" class="hidden w-full flex-col gap-4 sm:flex sm:w-auto sm:flex-row">
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          aria-current={isCurrent(link.href) ? "page" : undefined}
+          class="text-muted no-underline hover:text-accent aria-[current=page]:text-accent"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<script>
+  // Mobile menu: show/hide the nav links when the "Menu" button is clicked.
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector("#site-nav");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("hidden") === false;
+      nav.classList.toggle("flex", isOpen);
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
+</script>

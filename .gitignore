@@ -4,3 +4,8 @@
 # Editors
 .vscode/
 .idea/
+
+# Astro / Node
+node_modules/
+dist/
+.astro/
